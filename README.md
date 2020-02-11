@@ -18,11 +18,10 @@
    The data preprocessing files for NuScenes and KITTI are in the src folder: nuscenes_dataset_self_supervised_cycle.py and kitti_dataset_self_supervised_cycle.py. 
   
 ### Training, Fine-tuning, and Evaluation
-   To train the model, execute the script:
+   To train the model on nuScenes, execute the script:
    ```
    source src/commands/command_train_1nn_cycle_nuscenes_flip_ons_keep_interp.sh
    ```
-   This script trains the cycle model for nuScenes.
    
    To fine tune on KITTI dataset, execute the script:
    ```
