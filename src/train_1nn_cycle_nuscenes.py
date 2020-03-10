@@ -224,7 +224,7 @@ def train():
         ops = {'pointclouds_pl': pointclouds_pl,
                'label': label_nn,
                'is_training_pl': is_training_pl,
-               'pred': pred_b,
+               'pred': pred_f,
                'loss': loss,
                'train_op': train_op,
                'merged': merged,
