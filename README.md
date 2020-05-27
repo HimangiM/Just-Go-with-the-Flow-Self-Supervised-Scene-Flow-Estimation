@@ -6,6 +6,12 @@ Authors: [Himangi Mittal](https://github.com/HimangiM), [Brian Okorn](https://gi
 
 [[arxiv](https://arxiv.org/pdf/1912.00497.pdf)] [Project Page]
 
+### Citation
+If you find our work useful in your research, please cite:
+```
+Mittal, Himangi, Brian Okorn, and David Held. "Just go with the flow: Self-supervised scene flow estimation." arXiv preprint arXiv:1912.00497 (2019).
+```
+
 ### Introduction
 In this work, we propose a method of scene flow estimation using two self-supervised losses, based on nearest neighbors and cycle consistency. These self-supervised losses allow us to train our method on large unlabeled autonomous driving datasets; the resulting method matches current state-of-the-art supervised performance using no real world annotations and exceeds stateof-the-art performance when combining our self-supervised approach with supervised learning on a smaller labeled dataset.
 
