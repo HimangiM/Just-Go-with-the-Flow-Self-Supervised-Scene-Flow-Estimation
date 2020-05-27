@@ -2,14 +2,14 @@
 
 Code release for the paper Just Go with the Flow: Self-Supervised Scene Flow Estimation, CVPR 2020 (Oral).
 
-Authors: Himangi Mittal, Brian Okorn, David Held
+Authors: [Himangi Mittal](https://github.com/HimangiM), [Brian Okorn](https://github.com/bokorn), [David Held](https://github.com/davheld)
 
-[arxiv] [Project Page]
+[[arxiv](https://arxiv.org/pdf/1912.00497.pdf)] [Project Page]
 
 ### Introduction
 In this work, we propose a method of scene flow estimation using two self-supervised losses, based on nearest neighbors and cycle consistency. These self-supervised losses allow us to train our method on large unlabeled autonomous driving datasets; the resulting method matches current state-of-the-art supervised performance using no real world annotations and exceeds stateof-the-art performance when combining our self-supervised approach with supervised learning on a smaller labeled dataset.
 
-For more details, please refer to our paper or project page.
+For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.pdf) or project page.
 
 ### Installation 
 #### Requirements
