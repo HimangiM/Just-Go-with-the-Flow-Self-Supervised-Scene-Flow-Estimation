@@ -54,11 +54,20 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
    |  |  |--test
    ```
    The data preprocessing file to run the code on KITTI is present in the src folder: kitti_dataset_self_supervised_cycle.py. 
-  
-### Training, Fine-tuning
-   To train/fine-tune on KITTI dataset, execute the script:
+   To create a dataloader for own dataset, refer to the script:
+   ```
+   nuscenes_dataset_self_supervised_cycle.py
+   ```
+   
+### Training/Fine-tuning
+   To fine-tune on KITTI dataset, execute the script:
    ```
    source src/commands/command_train_cycle_fine_tune_kitti.sh
+   ```
+   To train on own dataset, refer to the scripts:
+   ```
+   train_1nn_cycle_nuscenes.py
+   source src/commands/command_train_cycle_nuscenes.sh
    ```
 #### Evaluation
    You can download the pretrained model from Google Drive [link](https://drive.google.com/drive/folders/1ldakyGw4QxfhAQeykyoJG2iv8yNuAy5_?usp=sharing). To evaluate on the KITTI dataset, execute the script:
