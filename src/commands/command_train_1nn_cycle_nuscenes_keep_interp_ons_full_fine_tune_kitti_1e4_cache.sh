@@ -1,10 +1,10 @@
 
 
 
-python src/train_1nn_cycle_nuscenes_fine_tune_kitti.py \
-    --model model_concat_upsa_1nn_cycle_nuscenes \
-    --data data_preprocessing/kitti_rm_ground_cycle \
-    --log_dir log_train_1nn_cycle_nuscenes_keep_interp_ons_fine_tune_kitti_1e4_cache_p2nn_10k \
+python src/train_cycle_fine_tune_kitti.py \
+    --model model_concat_upsa_cycle \
+    --data data_preprocessing/kitti_self_supervised_flow \
+    --log_dir log_train_cycle_fine_tune_kitti \
     --num_point 2048 \
     --batch_size 8 \
     --radius 5 \
@@ -17,7 +17,5 @@ python src/train_1nn_cycle_nuscenes_fine_tune_kitti.py \
     --max_epoch 10000 \
     --fine_tune \
     --model_path log_train_pretrained/model.ckpt \
-    --kitti_dataset data_preprocessing/kitti_rm_ground_cycle \
+    --kitti_dataset data_preprocessing/kitti_self_supervised_flow \
     --sample_start_idx 0
-#    \
-#    > log_evaluate.txt 2>&1 &
