@@ -56,7 +56,7 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
 ### Training, Fine-tuning
    To train/fine-tune on KITTI dataset, execute the script:
    ```
-   source src/commands/command_train_1nn_cycle_nuscenes_keep_interp_ons_full_fine_tune_kitti_1e4_cache.sh
+   source src/commands/command_train_cycle_fine_tune_kitti.sh
    ```
 #### Evaluation
    You can download the pretrained model from Google Drive [link](https://drive.google.com/drive/folders/1ldakyGw4QxfhAQeykyoJG2iv8yNuAy5_?usp=sharing). To evaluate on the KITTI dataset, execute the script:
