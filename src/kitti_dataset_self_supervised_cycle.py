@@ -13,14 +13,14 @@ import random
 # import mayavi.mlab as mlab
 
 class SceneflowDataset():
-    def __init__(self, root = './data_preprocessing/nuscenes_trainval_pkl',
+    def __init__(self, root = './data_preprocessing/kitti_self_supervised_flow',
                  cache_size = 30000, npoints=2048, train=True,
                  softmax_dist = False, num_frames=3, flip_prob=0,
                  sample_start_idx=-1):
         self.npoints = npoints
         self.train = train
         self.root = root
-        if self.train:    # 20007
+        if self.train:    
             self.datapath = glob.glob(os.path.join(self.root, 'train/*.npz'))
         else:
             self.datapath = glob.glob(os.path.join(self.root, 'test/*.npz'))
@@ -36,7 +36,6 @@ class SceneflowDataset():
             pos_list, color_list = self.cache[index]
         else:
             fn = self.datapath[index]
-            # pc_list = pickle.load(open(fn, 'rb')) # list of point clouds
             pc_np_list = np.load(fn)
             pc_list = []
             pc_list.append(pc_np_list['pos1'])
@@ -57,10 +56,7 @@ class SceneflowDataset():
                                    sample_start_idx+self.npoints)
             for frame_idx in range(start_idx, start_idx + self.num_frames):
                 data = pc_list[frame_idx] # num_point x 4
-                # sample_idx = np.random.choice(data.shape[0], self.npoints, replace=False)
-
                 pos = data[sample_idx, :3]
-                # color = np.tile(data[sample_idx, 3:], [1, 3]) # 2048 x 1 => 2048 x 3
                 color = np.zeros((len(sample_idx), 3))
 
                 pos_list.append(pos)
@@ -81,40 +77,7 @@ class SceneflowDataset():
 
 
 if __name__ == '__main__':
-    # import mayavi.mlab as mlab
     d = SceneflowDataset(npoints=2048, train = False)
     print('Len of dataset:', len(d))
-    import time
-    tic = time.time()
-    for i in range(100):
-        # pc1, pc2, c1, c2, flow, m1, m2 = d[i]
-        # print (i)
-        # pc1, pc2, c1, c2, flow, m1 = d[i]
-        pc1, pc2, c1, c2, gt, m1 = d[i]
-
-        # print (pc1.shape)
-        # print (pc2.shape)
-        # print (c1.shape)
-        # print (c2.shape)
-        # print (gt.shape)
-        # print (m1.shape)
-        # print(np.sum(m1))
-        # print(np.sum(m2))
-        # pc1_m1 = pc1[m1==1,:]
-        # pc1_m1_n = pc1[m1==0,:]
-        # print(pc1_m1.shape)
-        # print(pc1_m1_n.shape)
-        # mlab.points3d(pc1_m1[:,0], pc1_m1[:,1], pc1_m1[:,2], scale_factor=0.05, color=(1,0,0))
-        # mlab.points3d(pc1_m1_n[:,0], pc1_m1_n[:,1], pc1_m1_n[:,2], scale_factor=0.05, color=(0,1,0))
-        # raw_input()
-
-        # mlab.points3d(pc1[:,0], pc1[:,1], pc1[:,2], scale_factor=0.05, color=(1,0,0))
-        # mlab.points3d(pc2[:,0], pc2[:,1], pc2[:,2], scale_factor=0.05, color=(0,1,0))
-        # raw_input()
-        # mlab.quiver3d(pc1[:,0], pc1[:,1], pc1[:,2], flow[:,0], flow[:,1], flow[:,2], scale_factor=1)
-        # raw_input()
-
-    print(time.time() - tic)
-    print(pc1.shape, type(pc1))
 
 
