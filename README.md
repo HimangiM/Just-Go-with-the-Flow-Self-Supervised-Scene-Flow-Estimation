@@ -59,7 +59,7 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
    source src/commands/command_train_1nn_cycle_nuscenes_keep_interp_ons_full_fine_tune_kitti_1e4_cache.sh
    ```
 #### Evaluation
-   You can download the pretrained model from here. To evaluate on the KITTI dataset, execute the script:
+   You can download the pretrained model from Google Drive [link](https://drive.google.com/drive/folders/1ldakyGw4QxfhAQeykyoJG2iv8yNuAy5_?usp=sharing). To evaluate on the KITTI dataset, execute the script:
    
 ### Visualization
 You can use Open3d to visualize the results. A sample script is given in the 
