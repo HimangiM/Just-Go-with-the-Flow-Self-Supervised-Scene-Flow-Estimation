@@ -53,13 +53,14 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
    ```
    The data preprocessing file to run the code on KITTI is present in the src folder: kitti_dataset_self_supervised_cycle.py. 
   
-### Training, Fine-tuning, and Evaluation
-   You can download the pretrained model from here.
-   
-   To train on KITTI dataset, execute the script:
+### Training, Fine-tuning
+   To train/fine-tune on KITTI dataset, execute the script:
    ```
    source src/commands/command_train_1nn_cycle_nuscenes_keep_interp_ons_full_fine_tune_kitti_1e4_cache.sh
    ```
+#### Evaluation
+   You can download the pretrained model from here. To evaluate on the KITTI dataset, execute the script:
+   
 ### Visualization
 You can use Open3d to visualize the results. A sample script is given in the 
    
