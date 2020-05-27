@@ -36,28 +36,26 @@ For more details, please refer to our paper or project page.
   Check for CUDA-9.0
   ```
   (c). Compile the operations
-  
-### Compilation of Operation
-   The point cloud operations - sampling, grouping, and 3d interpolation can be compiled using make_tf_ops.sh. Check the CUDA compatability and edit the architecture accordingly in Makefiles of each folder (tf_ops/sampling, tf_ops/grouping, tf_ops/3d_interpolation):
-   
-   ```
-   source make_tf_ops.sh
-   ```
-   
+  The TF operators are included under src/tf_ops. Check the CUDA compatability and edit the architecture accordingly in makefiles of each folder (tf_ops/sampling, tf_ops/grouping, tf_ops/3d_interpolation). Finally, move into each directory and run make. As a shortcut, you can also run source make_tf_ops.sh after editing the architecture.
+    
 ### Datasets
-   The data preprocessing files for NuScenes and KITTI are in the src folder: nuscenes_dataset_self_supervised_cycle.py and kitti_dataset_self_supervised_cycle.py. 
+   You can download the kitti dataset from the google drive link given here (). Each file is in the .npz format and has three keys: pos1, pos2 and gt, representing the first frame of point cloud, second frame of point cloud and the ground truth scene flow vectors for the points in the first frame.The dataset directory should look as follows:
+   ```
+   KITTI
+   |-train
+   |-test
+   ```
+   The data preprocessing file to run the code on KITTI is present in the src folder: kitti_dataset_self_supervised_cycle.py. 
   
 ### Training, Fine-tuning, and Evaluation
-   To train the model on nuScenes, execute the script:
-   ```
-   source src/commands/command_train_1nn_cycle_nuscenes_flip_ons_keep_interp.sh
-   ```
+   You can download the pretrained model from here.
    
-   To fine tune on KITTI dataset, execute the script:
+   To train on KITTI dataset, execute the script:
    ```
    source src/commands/command_train_1nn_cycle_nuscenes_keep_interp_ons_full_fine_tune_kitti_1e4_cache.sh
    ```
-   
+### Visualization
+You can use Open3d to visualize the results. A sample script is given in the 
    
    
     
