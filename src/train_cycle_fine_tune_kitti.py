@@ -182,8 +182,7 @@ def train():
                                                                                       num_frames=NUM_FRAMES,
                                                                                       stop_gradient=STOP_GRADIENT,
                                                                                       rigidity=RIGIDITY,
-                                                                                      rgb=RGB,
-                                                                                      interp_alpha=INTERP_ALPHA)
+                                                                                      rgb=RGB)
 
             loss, end_points_loss = MODEL.get_cycle_loss(pred_f = pred_f, grouped_xyz = label_nn,
                                         pred_b = pred_b,
