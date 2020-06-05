@@ -70,7 +70,7 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
    source src/commands/command_train_cycle_nuscenes.sh
    ```
 #### Evaluation
-   You can download the pretrained model from Google Drive [link](https://drive.google.com/drive/folders/1ldakyGw4QxfhAQeykyoJG2iv8yNuAy5_?usp=sharing). To evaluate on the KITTI dataset, execute the script:
+   You can download the pretrained model from Google Drive link. To evaluate on the KITTI dataset, execute the script:
    
 ### Visualization
 You can use Open3d to visualize the results. A sample script is given in visualization.py
