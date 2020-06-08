@@ -60,6 +60,10 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
    ```
    
 ### Training/Fine-tuning
+   To train on KITTI dataset, execute the script:
+   ```
+   source src/commands/command_train_cycle_kitti.sh
+   ```
    To fine-tune on KITTI dataset, execute the script:
    ```
    source src/commands/command_train_cycle_fine_tune_kitti.sh
