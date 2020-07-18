@@ -1,7 +1,3 @@
-'''
-    Provider for duck dataset from xingyu liu
-'''
-
 import os
 import os.path
 import json
