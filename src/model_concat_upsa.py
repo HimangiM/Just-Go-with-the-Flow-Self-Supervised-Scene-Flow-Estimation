@@ -1,6 +1,3 @@
-"""
-    FlowNet3D model with up convolution
-"""
 
 import tensorflow as tf
 import numpy as np
