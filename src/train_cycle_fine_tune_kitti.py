@@ -1,7 +1,3 @@
-'''
-    Single-GPU training code
-'''
-# here
 import argparse
 import math
 from datetime import datetime
