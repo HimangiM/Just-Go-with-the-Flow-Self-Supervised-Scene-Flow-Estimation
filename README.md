@@ -4,7 +4,7 @@ Code release for the paper Just Go with the Flow: Self-Supervised Scene Flow Est
 
 Authors: [Himangi Mittal](https://github.com/HimangiM), [Brian Okorn](https://github.com/bokorn), [David Held](https://github.com/davheld)
 
-[[arxiv](https://arxiv.org/pdf/1912.00497.pdf)] [Project Page](https://just-go-with-the-flow.github.io/)
+[[arxiv](https://arxiv.org/pdf/1912.00497.pdf)] [[Project Page](https://just-go-with-the-flow.github.io/)]
 
 ### Citation
 If you find our work useful in your research, please cite:
