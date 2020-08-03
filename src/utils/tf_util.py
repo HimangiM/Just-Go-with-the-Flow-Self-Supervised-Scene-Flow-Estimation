@@ -1,8 +1,3 @@
-""" Wrapper functions for TensorFlow layers.
-
-Author: Charles R. Qi
-Date: November 2017
-"""
 
 import numpy as np
 import tensorflow as tf
