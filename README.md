@@ -42,7 +42,7 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
   Check for CUDA-9.0
   ```
   (c). Compile the operations
-  The ```TF operators``` are included under src/tf_ops. Check the [CUDA compatability](https://en.wikipedia.org/wiki/CUDA#GPUs_supported) and ```edit the architecture``` accordingly in ```makefiles``` of each folder (tf_ops/sampling, tf_ops/grouping, tf_ops/3d_interpolation). Finally, move into each directory and run ```make```. As a shortcut, you can also run ```bash make_tf_ops.sh sm_61``` after editing the architecture.
+  The ```TF operators``` are included under src/tf_ops. Check the [CUDA compatability](https://en.wikipedia.org/wiki/CUDA#GPUs_supported) and ```edit the architecture``` accordingly in ```makefiles``` of each folder (tf_ops/sampling, tf_ops/grouping, tf_ops/3d_interpolation) The authors had used ```sm_61``` as the architecture for CUDA-9.0. Finally, move into each directory and run ```make```. As a shortcut, you can also run ```bash make_tf_ops.sh sm_61``` after editing the architecture.
     
 ### Datasets
    Download the kitti dataset from the Google Drive [link](https://drive.google.com/drive/u/1/folders/1WNqrfUBR-EdN2ns_0D3FIdJBAPmFkaOo). Each file is in the .npz format and has three keys: ```pos1, pos2 and gt```, representing the first frame of point cloud, second frame of point cloud and the ground truth scene flow vectors for the points in the first frame. Create a folder with name data_preprocessing and download the kitti dataset in it. The dataset directory should look as follows:
@@ -69,7 +69,7 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
    ```
    bash src/commands/command_evaluate_kitti.sh
    ```
-   You can download a pretrained model from the Google drive [link](https://drive.google.com/drive/u/1/folders/1ldakyGw4QxfhAQeykyoJG2iv8yNuAy5_) 
+   <!-- You can download a pretrained model from the Google drive [link](https://drive.google.com/drive/u/1/folders/1ldakyGw4QxfhAQeykyoJG2iv8yNuAy5_) -->
    
 ### Visualization
 You can use ```Open3d``` to visualize the results. A sample script is given in visualization.py
