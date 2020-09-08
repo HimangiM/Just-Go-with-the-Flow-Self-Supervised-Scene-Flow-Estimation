@@ -69,7 +69,6 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
    ```
    bash src/commands/command_evaluate_kitti.sh
    ```
-   We will release a pretrained model for evaluation soon.
   
 ### Visualization
 You can use ```Open3d``` to visualize the results. A sample script is given in visualization.py
