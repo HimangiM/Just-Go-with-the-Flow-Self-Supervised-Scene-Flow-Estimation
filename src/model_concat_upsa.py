@@ -22,7 +22,6 @@ def placeholder_inputs(batch_size, num_point):
 
 def get_model(radius, layer, point_cloud, is_training, bn_decay=None, knn=False, flow_module='default'):
     """ Semantic segmentation PointNet, input is BxNx3, output Bxnum_class """
-    print ('knn value: ', knn)
 
     end_points = {}
     batch_size = point_cloud.get_shape()[0].value  # batch_size = 16
