@@ -69,8 +69,7 @@ For more details, please refer to our [paper](https://arxiv.org/pdf/1912.00497.p
    ```
    bash src/commands/command_evaluate_kitti.sh
    ```
-   <!-- You can download a pretrained model from the Google drive [link](https://drive.google.com/drive/u/1/folders/1ldakyGw4QxfhAQeykyoJG2iv8yNuAy5_) -->
-   
+  
 ### Visualization
 You can use ```Open3d``` to visualize the results. A sample script is given in visualization.py
    
