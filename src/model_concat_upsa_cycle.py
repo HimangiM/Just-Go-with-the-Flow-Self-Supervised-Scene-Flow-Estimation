@@ -102,7 +102,6 @@ def get_model(radius, layer, point_cloud, is_training, bn_decay=None, knn=False,
 
 def get_model_flow(radius, layer, point_cloud, is_training, bn_decay=None, knn=False, flow_module='default'):
     """ Semantic segmentation PointNet, input is BxNx3, output Bxnum_class """
-    print ('knn value: ', knn)
 
     end_points = {}
     batch_size = point_cloud.get_shape()[0].value  # batch_size = 16
@@ -208,9 +207,6 @@ def get_model_flow(radius, layer, point_cloud, is_training, bn_decay=None, knn=F
     # POINT MIXTURE
     # embedding layer
     # radius = 1, 10, 50
-    print("Radius here:", radius)
-    print('KNN', knn)
-    print('flow module', flow_module)
     if flow_module == 'default':
         _, l2_points_f1_new = flow_embedding_module(l2_xyz_f1, l2_xyz_f2,
                                                     l2_points_f1, l2_points_f2,
@@ -307,7 +303,6 @@ def get_model_flow(radius, layer, point_cloud, is_training, bn_decay=None, knn=F
                                         l1_feat_f1, [256, 256], is_training,
                                         bn_decay, scope='fa_layer4')
     else:
-        print ('Last set conv layer running')
         l0_feat_f1 = set_upconv_module(l0_xyz_f1, l1_xyz_f1, l0_points_f1,
                                        l1_feat_f1, nsample=8, radius=0.3,
                                        mlp=[128,128,256], mlp2=[256],
