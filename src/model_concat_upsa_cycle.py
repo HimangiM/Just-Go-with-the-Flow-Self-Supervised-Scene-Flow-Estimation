@@ -38,9 +38,9 @@ def get_model(radius, layer, point_cloud, is_training, bn_decay=None, knn=False,
     _, idx = knn_point(1, point_cloud[:, num_point:num_point*2, :3],
                        pred_f)
 
-    print ('Knn idx shape:', idx.shape)
+
     grouped_xyz = group_point(point_cloud[:, num_point:num_point*2, :3], idx)
-    print ('Grouped xyz shape:', grouped_xyz.shape)
+
 
     grouped_xyz = tf.squeeze(grouped_xyz, axis=2) # grouped_xyz => pc2nn
     end_points_f = {
@@ -66,7 +66,6 @@ def get_model(radius, layer, point_cloud, is_training, bn_decay=None, knn=False,
 
     # changes from here
     if stop_gradient:
-        print ('Stop gradient on predicted point cloud 2')
         pred_f_copy = tf.Variable(0, dtype=pred_f.dtype, trainable=False, collections=[])
         pred_f_copy = tf.assign(pred_f_copy, pred_f, validate_shape=False)
     else:
