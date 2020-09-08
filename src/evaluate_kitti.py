@@ -140,7 +140,6 @@ with tf.Graph().as_default():
     epe_count = 0
     sample_count = 0
     for ki in all_kitti:
-        print(ki)
         x = np.load(ki)
 
         all_pred = []
@@ -178,10 +177,6 @@ with tf.Graph().as_default():
         pred_val, end_points_val = sess.run([ops['pred'], ops['end_points']], feed_dict=feed_dict)
         epe, acc1, acc2, error, gt_label = scene_flow_EPE_np(pred_val, batch_label,
                                         np.ones(pred_val.shape, dtype=np.int32)[:,:,0])
-
-        print (ki, epe)
-        
-        print('EPE 3D: %f\tACC 3D: %f\tACC 3D 2: %f' % (epe, acc1, acc2))
 
         epe_total += epe
         sample_count += batch_data.shape[0]
