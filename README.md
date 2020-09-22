@@ -15,7 +15,7 @@ title = {Just Go With the Flow: Self-Supervised Scene Flow Estimation},
 booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
 month = {June},
 year = {2020}
-}.
+}
 ```
 
 ### Introduction
