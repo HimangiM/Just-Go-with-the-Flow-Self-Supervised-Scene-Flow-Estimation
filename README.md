@@ -9,7 +9,13 @@ Authors: [Himangi Mittal](https://github.com/HimangiM), [Brian Okorn](https://gi
 ### Citation
 If you find our work useful in your research, please cite:
 ```
-Mittal, Himangi, Brian Okorn, and David Held. "Just go with the flow: Self-supervised scene flow estimation." arXiv preprint arXiv:1912.00497 (2019).
+@InProceedings{Mittal_2020_CVPR,
+author = {Mittal, Himangi and Okorn, Brian and Held, David},
+title = {Just Go With the Flow: Self-Supervised Scene Flow Estimation},
+booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2020}
+}.
 ```
 
 ### Introduction
