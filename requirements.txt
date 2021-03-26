@@ -84,7 +84,7 @@ python-pcl==0.3.0a1
 pythreejs==2.2.0
 pytz==2019.3
 PyWavelets==1.1.1
-PyYAML==5.1.2
+PyYAML==5.4
 pyzmq==18.1.0
 requests==2.23.0
 scikit-image==0.16.2
