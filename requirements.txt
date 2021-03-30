@@ -74,7 +74,7 @@ protobuf==3.9.1
 ptyprocess==0.6.0
 pycparser==2.19
 pyface==6.1.2
-Pygments==2.4.2
+Pygments==2.7.4
 pyparsing==2.4.2
 pypng==0.0.20
 pyquaternion==0.9.5
