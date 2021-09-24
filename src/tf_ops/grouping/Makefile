@@ -2,7 +2,7 @@
 
 
 
-CUDA_HOME := /home/hmittal/cuda-9.0
+CUDA_HOME := ${CUDA_HOME} #/home/hmittal/cuda-9.0
 
 TF_INC = `python3 -c "import tensorflow; print(tensorflow.sysconfig.get_include())"`
 TF_LIB = `python3 -c "import tensorflow as tf; print(tf.sysconfig.get_lib())"`
@@ -10,7 +10,7 @@ TF_LIB = `python3 -c "import tensorflow as tf; print(tf.sysconfig.get_lib())"`
 LIBFLAGS = -L$(CUDA_HOME)/lib -L$(CUDA_HOME)/lib64 -lcudart -L $(TF_LIB) -ltensorflow_framework -lcublas
 
 ifndef ARCHI
-	ARCHI=sm_61
+	ARCHI=${CUDA_ARCH}
 endif
 
 arch = $(ARCHI)
