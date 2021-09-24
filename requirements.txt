@@ -65,7 +65,6 @@ parso==0.5.1
 pexpect==4.7.0
 pickleshare==0.7.5
 Pillow==6.1.0
-pkg-resources==0.0.0
 pptk==0.1.0
 progressbar==2.5
 prometheus-client==0.7.1
