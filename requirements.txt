@@ -26,7 +26,7 @@ imutils==0.5.3
 ipdb==0.12.2
 ipydatawidgets==4.0.1
 ipykernel==5.1.2
-ipython==7.8.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 ipyvolume==0.5.2
 ipywebrtc==0.5.0
