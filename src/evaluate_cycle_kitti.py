@@ -6,6 +6,7 @@ import tensorflow as tf
 import socket
 import importlib
 import os
+import os.path as osp
 import sys
 import glob
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -76,7 +77,7 @@ def scene_flow_EPE_np(pred, labels, mask):
     acc1 = np.sum(acc1)
     acc2 = acc2[mask_sum > 0] / mask_sum[mask_sum > 0]
     acc2 = np.sum(acc2)
-    
+
     EPE = np.sum(error)
 
 #     EPE = np.sum(error * mask, 1)[mask_sum > 0] / mask_sum[mask_sum > 0]
@@ -96,18 +97,18 @@ def get_bn_decay(batch):
 with tf.Graph().as_default():
     with tf.device('/gpu:'+str(GPU_INDEX)):
         pointclouds_pl, labels_pl, masks_pl = MODEL.placeholder_inputs(None, NUM_POINT)
-        
+
         is_training_pl = tf.placeholder(tf.bool, shape=())
-        
+
         batch = tf.Variable(0)  # batch = 0
         bn_decay = get_bn_decay(batch)    # bn_decay = 0.5
         print("--- Get model and loss")
         # Get model and loss
-        pred, end_points = MODEL.get_model(RADIUS, LAYER, pointclouds_pl, is_training_pl, bn_decay=bn_decay, 
+        pred, end_points = MODEL.get_model(RADIUS, LAYER, pointclouds_pl, is_training_pl, bn_decay=bn_decay,
                 knn=KNN, flow_module=FLOW_MODULE)
-        
+
         saver = tf.train.Saver()
-        
+
     # Create a session
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
@@ -116,32 +117,35 @@ with tf.Graph().as_default():
     sess = tf.Session(config=config)
 
     saver.restore(sess, MODEL_PATH)
-    
+
     ops = {'pointclouds_pl': pointclouds_pl,
            'label': labels_pl,
            'is_training_pl': is_training_pl,
            'pred': pred,
            'end_points': end_points}
     is_training = False
-    
+
 #     all_kitti = glob.glob('/home/gaurav/himangi/flownet3d_research/cvpr/after_cvpr/rebuttal/kitti_final_points_estimate/*.npz')
     all_kitti = glob.glob(os.path.join(KITTI_DATASET, 'test/*.npz'))
+    os.makedirs('/flow/data_preprocessing/kitti_self_supervised_flow/results', exist_ok=True)
+
+    print(f"all kitti {all_kitti}")
     l_error_all = []
     l_gt_all = []
     l_dist_center = []
     l_query_ball = []
     l_dist_count_all = []
-    
+
     num_frame = 40
     epe_total = 0
     epe_count = 0
     batch_count = 0
     sample_count = 0
-    
+
     all_pred = []
     all_label = []
     all_points = []
-    
+
     for ki in all_kitti:
 #         try:
         x = np.load(ki)
@@ -149,29 +153,30 @@ with tf.Graph().as_default():
         batch_label = []
         batch_data = []
         batch_mask = []
-        
+
         ref_pc = x['pos1'][:, :3]
+        print(f"ref_pc length {ref_pc}")
         ref_center = np.mean(ref_pc, 0)
-        print(len(x['pos1']), len(x['pos2']))
         for i in range(0, len_cloud, 2048):
             if i+2048 < len(x['pos1']) and i+2048 < len(x['pos2']):
 
                 pc1 = x['pos1'][i:i+2048, :3]
                 pc2 = x['pos2'][i:i+2048, :3]
                 gt = x['gt'][i:i+2048, :3]
-                
+
                 pc1 = pc1 - ref_center
                 pc2 = pc2 - ref_center
-                
+
                 batch_data.append(np.concatenate([np.concatenate([pc1,
-                                                                  pc2], axis=0), 
+                                                                  pc2], axis=0),
                                                   np.zeros((4096, 3))], axis=1)) # 4096, 6
-                
+
 
                 batch_label.append(gt)
-               
+
         batch_data = np.array(batch_data) # 10 x 4096 x 6
-        
+        print(batch_data.shape)
+
         batch_label = np.array(batch_label)
 
         feed_dict = {ops['pointclouds_pl']: batch_data,
@@ -184,18 +189,34 @@ with tf.Graph().as_default():
         epe_total += epe
         sample_count += batch_data.shape[0]*(batch_data.shape[1]/2)
         batch_count += batch_data.shape[0]
-        
+
         all_pred.append(pred_val)
         all_points.append(batch_data)
         all_label.append(batch_label)
-        
-            
+
+        np.save(
+            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_allpred"),
+            pred_val,
+            allow_pickle=True
+        )
+        np.save(
+            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_allpoints"),
+            batch_data,
+            allow_pickle=True
+        )
+        np.save(
+            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_alllabel"),
+            batch_label,
+            allow_pickle=True
+        )
+
+
     all_pred = np.array(all_pred)
     all_points = np.array(all_points)
     all_label = np.array(all_label)
-    
+
     print (all_pred.shape, all_points.shape, all_label.shape)
-    
+
     print('Num batches {} Average EPE {}'.format(sample_count,epe_total/sample_count))
     print ('eval mean EPE 3D: %f' % (epe_total / sample_count))
-    
+

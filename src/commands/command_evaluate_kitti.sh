@@ -1,4 +1,4 @@
-python src/evaluate_cycle_kitti.py \
+python3 src/evaluate_cycle_kitti.py \
     --model model_concat_upsa \
     --data data_preprocessing/kitti_self_supervised_flow \
     --model_path log_train_pretrained/model.ckpt \
@@ -7,7 +7,7 @@ python src/evaluate_cycle_kitti.py \
     --batch_size 8 \
     --radius 5 \
     --layer pointnet \
-    --gpu 2 \
+    --gpu 0 \
     --num_frames 2
-    
+
 
