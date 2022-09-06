@@ -1,7 +1,7 @@
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 ENV DEBIAN_FRONTEND=noninteractive \
   CUDA_HOME=/usr/local/cuda \
-  CUDA_ARCH=sm_86 \
+  CUDA_ARCH=sm_75 \
   LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH \
   PATH=/usr/local/cuda/bin:$PATH
 
@@ -39,6 +39,7 @@ RUN cd /flow/src/tf_ops/3d_interpolation && make && \
   cd /flow/src/tf_ops/sampling && make
 
 WORKDIR /flow
+#RUN bash ./make_tf_ops.sh $(CUDA_ARCH) 
 RUN mkdir -p data_preprocessing/kitti_self_supervised_flow && \
   mkdir -p log_train_pretrained && \
   chmod +x src/commands/command_evaluate_kitti.sh
