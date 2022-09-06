@@ -127,7 +127,10 @@ with tf.Graph().as_default():
 
 #     all_kitti = glob.glob('/home/gaurav/himangi/flownet3d_research/cvpr/after_cvpr/rebuttal/kitti_final_points_estimate/*.npz')
     all_kitti = glob.glob(os.path.join(KITTI_DATASET, '*.npz'))
-    os.makedirs('/flow/data_preprocessing/kitti_self_supervised_flow/results', exist_ok=True)
+
+    result_save_path = osp.join('/'.join(MODEL_PATH.split('/')[:-1]), 'eval_results')
+    print(result_save_path)
+    os.makedirs(result_save_path, exist_ok=True)
 
     print(f"all kitti {all_kitti}")
     l_error_all = []
@@ -201,17 +204,17 @@ with tf.Graph().as_default():
         all_label.append(batch_label)
 
         np.save(
-            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_allpred"),
+            osp.join(result_save_path, f"{ki.split('/')[-1]}_allpred"),
             pred_val,
             allow_pickle=True
         )
         np.save(
-            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_allpoints"),
+            osp.join(result_save_path, f"{ki.split('/')[-1]}_allpoints"),
             batch_data,
             allow_pickle=True
         )
         np.save(
-            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_alllabel"),
+            osp.join(result_save_path, f"{ki.split('/')[-1]}_alllabel"),
             batch_label,
             allow_pickle=True
         )
