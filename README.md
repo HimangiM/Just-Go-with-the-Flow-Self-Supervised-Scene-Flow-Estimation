@@ -1,6 +1,4 @@
-# Just Go with the Flow: Self-Supervised Scene Flow Estimation
-
-Code release for the paper Just Go with the Flow: Self-Supervised Scene Flow Estimation, CVPR 2020 (Oral).
+# Just Go with the Flow: Self-Supervised Scene Flow Estimation, CVPR 2020 (Oral)
 
 Authors: [Himangi Mittal](https://github.com/HimangiM), [Brian Okorn](https://github.com/bokorn), [David Held](https://github.com/davheld)
 
