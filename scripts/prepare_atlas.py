@@ -19,8 +19,8 @@ if __name__ == "__main__":
         split_path = files[idx].split("/")
         frame_id = split_path[-1][: -len(file_suffix)]
         frame_id_next = files[idx+1].split('/')[-1][:-len(file_suffix)]
-        phase = split_path[-2]
-        trial = split_path[-3]
+        phase = split_path[-3]
+        trial = split_path[-4]
         noise_path = os.path.join(args.data_root, trial, phase, 'indices')
         print(trial, phase, frame_id, frame_id_next)
         mesh1 = o3d.io.read_point_cloud(files[idx])
