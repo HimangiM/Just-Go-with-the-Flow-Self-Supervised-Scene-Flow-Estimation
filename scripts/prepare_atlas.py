@@ -21,11 +21,19 @@ if __name__ == "__main__":
         frame_id_next = files[idx+1].split('/')[-1][:-len(file_suffix)]
         phase = split_path[-2]
         trial = split_path[-3]
+        noise_path = os.path.join(args.data_root, trial, phase, 'indices')
         print(trial, phase, frame_id, frame_id_next)
         mesh1 = o3d.io.read_point_cloud(files[idx])
         points1 = np.asarray(mesh1.vertices)
         mesh2 = o3d.io.read_point_cloud(files[idx + 1])
         points2 = np.asarray(mesh2.vertices)
+
+
+        noise_t_mask = np.load(os.path.join(noise_path, f"{frame_id}.npy"))
+        noise_dt_mask = np.load(os.path.join(noise_path, f"{frame_id_next}.npy"))
+        points1 = points1[noise_t_mask]
+        points2 = points2[noise_dt_mask]
+
 
         data = {"pos1": points1, "pos2": points2}
 
