@@ -24,9 +24,9 @@ if __name__ == "__main__":
         noise_path = os.path.join(args.data_root, trial, phase, 'indices')
         print(trial, phase, frame_id, frame_id_next)
         mesh1 = o3d.io.read_point_cloud(files[idx])
-        points1 = np.asarray(mesh1.vertices)
+        points1 = np.asarray(mesh1.points)
         mesh2 = o3d.io.read_point_cloud(files[idx + 1])
-        points2 = np.asarray(mesh2.vertices)
+        points2 = np.asarray(mesh2.points)
 
 
         noise_t_mask = np.load(os.path.join(noise_path, f"{frame_id}.npy"))
