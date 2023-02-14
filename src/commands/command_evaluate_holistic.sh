@@ -1,4 +1,4 @@
-python3 src/evaluate_cycle_kitti.py \
+python3 src/evaluate_cycle_holistic.py \
     --model model_concat_upsa \
     --data data_preprocessing/kitti_self_supervised_flow \
     --model_path log_train_pretrained/model.ckpt \

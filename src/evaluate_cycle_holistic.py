@@ -126,8 +126,11 @@ with tf.Graph().as_default():
     is_training = False
 
 #     all_kitti = glob.glob('/home/gaurav/himangi/flownet3d_research/cvpr/after_cvpr/rebuttal/kitti_final_points_estimate/*.npz')
-    all_kitti = glob.glob(os.path.join(KITTI_DATASET, 'test/*.npz'))
-    os.makedirs('/flow/data_preprocessing/kitti_self_supervised_flow/results', exist_ok=True)
+    all_kitti = glob.glob(os.path.join(KITTI_DATASET, '*.npz'))
+
+    result_save_path = osp.join('/'.join(MODEL_PATH.split('/')[:-1]), 'eval_results')
+    print(result_save_path)
+    os.makedirs(result_save_path, exist_ok=True)
 
     print(f"all kitti {all_kitti}")
     l_error_all = []
@@ -148,21 +151,27 @@ with tf.Graph().as_default():
 
     for ki in all_kitti:
 #         try:
-        x = np.load(ki)
+        x = np.load(ki, allow_pickle=True)[()]
 
         batch_label = []
         batch_data = []
         batch_mask = []
 
+        print(x)
         ref_pc = x['pos1'][:, :3]
-        print(f"ref_pc length {ref_pc}")
+        print(f"ref_pc length {ref_pc.shape} pos2 length {x['pos2'].shape}")
         ref_center = np.mean(ref_pc, 0)
+        min_point_len = min(ref_pc.shape[0], x['pos2'].shape[0])
+        len_cloud = (min_point_len // 2048) * 2048
+        random_indices = np.random.permutation(min_point_len)[:len_cloud]
+        pos1 = x['pos1'][random_indices]
+        pos2 = x['pos2'][random_indices]
         for i in range(0, len_cloud, 2048):
-            if i+2048 < len(x['pos1']) and i+2048 < len(x['pos2']):
+            if i+2048 < len(pos1) and i+2048 < len(pos2):
 
-                pc1 = x['pos1'][i:i+2048, :3]
-                pc2 = x['pos2'][i:i+2048, :3]
-                gt = x['gt'][i:i+2048, :3]
+                pc1 = pos1[i:i+2048, :3]
+                pc2 = pos2[i:i+2048, :3]
+                gt = np.zeros((2048,3)) #x['gt'][i:i+2048, :3]
 
                 pc1 = pc1 - ref_center
                 pc2 = pc2 - ref_center
@@ -195,17 +204,17 @@ with tf.Graph().as_default():
         all_label.append(batch_label)
 
         np.save(
-            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_allpred"),
+            osp.join(result_save_path, f"{ki.split('/')[-1]}_allpred"),
             pred_val,
             allow_pickle=True
         )
         np.save(
-            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_allpoints"),
+            osp.join(result_save_path, f"{ki.split('/')[-1]}_allpoints"),
             batch_data,
             allow_pickle=True
         )
         np.save(
-            osp.join('/flow/data_preprocessing/kitti_self_supervised_flow/results', f"{ki.split('/')[-1]}_alllabel"),
+            osp.join(result_save_path, f"{ki.split('/')[-1]}_alllabel"),
             batch_label,
             allow_pickle=True
         )

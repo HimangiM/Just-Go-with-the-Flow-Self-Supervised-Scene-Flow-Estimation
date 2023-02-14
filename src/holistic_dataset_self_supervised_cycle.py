@@ -32,7 +32,7 @@ class SceneflowDataset():
             pos_list, color_list = self.cache[index]
         else:
             fn = self.datapath[index]
-            pc_np_list = np.load(fn, allow_pickle=True)
+            pc_np_list = np.load(fn, allow_pickle=True)[()]
             pc_list = []
             pc_list.append(pc_np_list['pos1'])
             pc_list.append(pc_np_list['pos2'])
